@@ -1,0 +1,8 @@
+1. unzip the adafruir GC9a01a library and put the folder into your arduino libraries folder
+2. go to preferences and paste this link into additional boards
+
+https://dl.espressif.com/dl/package_esp32_index.json
+
+3. go to board manager and download ESP32 board
+4. compile and upload
+
