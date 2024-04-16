@@ -177,49 +177,70 @@ def list_serial_ports():
 def generate_serial_objects(get_device_ports):
     device_serial_list = []
     for i in range(len(get_device_ports)):
-        device_serial_list.append(
-            serial.Serial(get_device_ports[i], baud_rate))
+        try:
+            device_serial_list.append(
+                serial.Serial(get_device_ports[i], baud_rate, timeout=2, write_timeout=2))
+        except:
+            print(f'Error opening {get_device_ports[i]}')
     return device_serial_list
 
 
 device_ports = list_serial_ports()  # get a list of all serial ports
 # get a list of all relevant usb devices
 usb_devices = detect_usb_devices(device_id_list)
-serial_objects = generate_serial_objects(
-    device_ports)  # get a list of all serial objects
+serial_objects = generate_serial_objects(device_ports)  # get a list of all serial objects
 
-# print(device_ports)
-# print(usb_devices)
-# print(serial_objects)
+print(device_ports)
+print(usb_devices)
+print(serial_objects)
+print(type(serial_objects))
 
 print('========= Scanning for ESP32TwinGUI now =========')
 time.sleep(1)
 i = 0  # iterator for device_ports list
+try_times = 2
 unknown_devices = 0
 for serial_object in serial_objects:
     while True:  # keep sending the message on the same serial port until response is received
-        data = json.dumps({"message": "on"})  # send some JSON data
-        serial_object.write(data.encode('utf-8'))
-        time.sleep(0.01)  # short interval to pause serial activity
-        received_data = serial_object.readline().decode('utf-8')  # recieve data
-        try:
-            json_data = json.loads(received_data)
-            print("Received JSON data:")
-            print(json_data)
-            if json_data['message'] == 'hello' and json_data['device'] == 'ESP32TwinGUI':
-                print(json_data['device'])
-                device_dictionary[json_data['device']] = {'path': device_ports[i],
-                                                          'serial_info': serial_object}
-                i = i + 1
-                break  # message is successflly recieved
-        except json.JSONDecodeError as e:
-            print(f"Error decoding JSON data: {e}")  # might happen
-        except:
-            print("unkown device detected")
-            unknown_devices = unknown_devices + 1
-            device_dictionary['unknown_devices'] = unknown_devices
-            i = i + 1
+        if type(serial_object) is None:
+            serial_objects.remove(serial_object)
             break
+        else:
+            try:
+                data = json.dumps({"message": "on"})  # send some JSON data
+                serial_object.write(data.encode('utf-8'))
+                time.sleep(0.01)  # short interval to pause serial activity
+                received_data = serial_object.readline().decode('utf-8')  # recieve data
+                try:
+                    json_data = json.loads(received_data)
+                    print("Received JSON data:")
+                    print(json_data)
+                    if json_data['message'] == 'hello' and json_data['device'] == 'ESP32TwinGUI':
+                        print(json_data['device'])
+                        device_dictionary[json_data['device']] = {'path': device_ports[i],
+                                                                  'serial_info': serial_object}
+                        i = i + 1
+                        break  # message is successflly recieved
+                    else:
+                        i = i + 1
+                    if i > try_times:
+                        break
+                except json.JSONDecodeError as e:
+                    print(f"Error decoding JSON data: {e}")  # might happen
+                except:
+                    print("unkown device detected")
+                    unknown_devices = unknown_devices + 1
+                    device_dictionary['unknown_devices'] = unknown_devices
+                    i = i + 1
+                    break
+                i = i + 1
+                if i > try_times:
+                    break
+            except:
+                print(f'write timeout of {serial_object}')
+                i = i + 1
+            if i > try_times:
+                break
 
 # include this for double checking device types
 device_dictionary['usb_devices'] = usb_devices
@@ -396,34 +417,51 @@ while True:
             for serial_object in serial_objects:
                 while True:  # keep sending the message on the same serial port until response is received
                     print('Trying to reconnect!')
-                    data = json.dumps({"message": "on"})  # send some JSON data
-                    serial_object.write(data.encode('utf-8'))
-                    time.sleep(0.01)  # short interval to pause serial activity
-                    received_data = serial_object.readline().decode('utf-8')  # recieve data
-                    try:
-                        json_data = json.loads(received_data)
-                        print("Received JSON data:")
-                        print(json_data)
-                        if json_data['message'] == 'hello' and json_data['device'] == 'ESP32TwinGUI':
-                            print(json_data['device'])
-                            device_dictionary[json_data['device']] = {'path': device_ports[i],
-                                                                      'serial_info': serial_object}
+                    time.sleep(1)
+                    if type(serial_object) is None:
+                        serial_objects.remove(serial_object)
+                        break
+                    else:
+                        try:
+                            data = json.dumps({"message": "on"})  # send some JSON data
+                            serial_object.write(data.encode('utf-8'))
+                            time.sleep(0.01)  # short interval to pause serial activity
+                            received_data = serial_object.readline().decode('utf-8')  # recieve data
+                            try:
+                                json_data = json.loads(received_data)
+                                print("Received JSON data:")
+                                print(json_data)
+                                if json_data['message'] == 'hello' and json_data['device'] == 'ESP32TwinGUI':
+                                    print(json_data['device'])
+                                    device_dictionary[json_data['device']] = {'path': device_ports[i],
+                                                                              'serial_info': serial_object}
+                                    i = i + 1
+                                    break  # message is successflly recieved
+                                else:
+                                    i = i + 1
+                                if i > retry:
+                                    break
+                                if json_data['message'] == 'exit':
+                                    exit()
+                            except json.JSONDecodeError as e:
+                                print(f"Error decoding JSON data: {e}")  # might happen
+                                i = i + 1
+                                if i > retry:
+                                    break
+                                else:
+                                    continue
+                            except:
+                                print("unknown device detected")
+                                unknown_devices = unknown_devices + 1
+                                device_dictionary['unknown_devices'] = unknown_devices
+                                j = j + 1
+                                break
+                        except:
+                            print(f'write timeout of {serial_object}')
                             i = i + 1
-                            break  # message is successflly recieved
-                        if json_data['message'] == 'exit':
-                            exit()
-                    except json.JSONDecodeError as e:
-                        print(f"Error decoding JSON data: {e}")  # might happen
                         if i > retry:
                             break
-                        else:
-                            continue
-                    except:
-                        print("unknown device detected")
-                        unknown_devices = unknown_devices + 1
-                        device_dictionary['unknown_devices'] = unknown_devices
-                        j = j + 1
-                        break
+
         if outer_retries > retry:
             print("Reached max number of attempts to reconnect, exiting program")
             exit()
