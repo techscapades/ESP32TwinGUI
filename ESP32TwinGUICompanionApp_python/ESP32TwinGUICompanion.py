@@ -387,7 +387,7 @@ while True:
                        'cpu_load': av_cpu_load[0], 'gpu_load': av_gpu_load[0],
                        'date': com_date, 'time': com_time, 'day': com_day})
     # data = json.dumps({"cpu_temp": "29.1", "gpu_temp": "55.8"})
-    retry = 5
+    retry = 2
     outer_retries = 0
     while True:
         outer_retries = outer_retries + 1
