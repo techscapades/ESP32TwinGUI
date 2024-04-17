@@ -1,0 +1,12 @@
+pyinstaller -F --add-data '.\OpenHardwareMonitorLib.dll;.' --onefile .\openhardwaremonito
+r_communicate.py
+
+pyinstaller -F --add-data '.\OpenHardwareMonitorLib.dll;.' --add-data '.\libusb-1.0.dll;.
+' --hide-console minimize-early --onefile .\scan_and_begin_transmission_OHM_communicate.py
+
+pyinstaller -F -n ESP32TwinGUICompanion_launch_minimized -i '.\app_icon.ico' --add-data '
+.\OpenHardwareMonitorLib.dll;.' --add-data '.\libusb-1.0.dll;.' --hide-console minimize-late --onefile .\scan_and_begin_transmission_OHM_communicat
+e.py
+
+pyinstaller -F -i '.\splash_screen_ico.ico' --add-data '.\OpenHardwareMonitorLib.dll;.' --add-data '.\libusb-1.0.dll;.' --hide-console minimize-late
+ --onefile .\scan_and_begin_transmission_OHM_communicate_2.py
