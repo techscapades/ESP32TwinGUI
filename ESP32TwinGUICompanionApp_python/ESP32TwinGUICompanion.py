@@ -110,6 +110,7 @@ def end_screen():
     root.after(3000, root.destroy)  # Change 3000 to the duration in milliseconds
 
     root.mainloop()
+    return
 
 
 def exit_function():
