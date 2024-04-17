@@ -4,5 +4,7 @@
 https://dl.espressif.com/dl/package_esp32_index.json
 
 3. go to board manager and download ESP32 board
-4. compile and upload
+4. Tools > set USB CDC On Boot: "Enabled" and JTAG ADAPTER: "Disabled"
+5. Select the correct com port
+6. compile and upload
 
