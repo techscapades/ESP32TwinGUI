@@ -228,7 +228,7 @@ for serial_object in serial_objects:
                 except json.JSONDecodeError as e:
                     print(f"Error decoding JSON data: {e}")  # might happen
                 except:
-                    print("unkown device detected")
+                    print("unknown device detected")
                     unknown_devices = unknown_devices + 1
                     device_dictionary['unknown_devices'] = unknown_devices
                     i = i + 1
@@ -242,8 +242,15 @@ for serial_object in serial_objects:
             if i > try_times:
                 break
 
-# include this for double checking device types
+if len(serial_objects) == 0:
+    exit()
+
+# include this for double checking device types and exit if list is empty
 device_dictionary['usb_devices'] = usb_devices
+print(type(usb_devices))
+if len(usb_devices) == 0:
+    exit()
+
 print('========= Finished Scanning for ESP32TwinGUI =========')
 
 print('Device dictionary')

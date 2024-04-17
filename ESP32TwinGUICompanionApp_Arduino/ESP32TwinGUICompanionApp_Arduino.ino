@@ -389,10 +389,6 @@ void testFilledRoundRects() {
   for (i = min(tft_1.width(), tft_1.height()); i > 20; i -= 6) {
     i2 = i / 2;
     tft_1.fillRoundRect(cx - i2, cy - i2, i, i, i / 8, tft_1.color565(0, i, 0));
-    yield();
-  }
-  for (i = min(tft_1.width(), tft_1.height()); i > 20; i -= 6) {
-    i2 = i / 2;
     tft_2.fillRoundRect(cx - i2, cy - i2, i, i, i / 8, tft_2.color565(0, i, 0));
     yield();
   }

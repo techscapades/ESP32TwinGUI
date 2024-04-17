@@ -1,0 +1,9 @@
+Launch Minimized Command (better for debugging):
+
+pyinstaller -F -i '.\splash_screen_ico.ico' --add-data '.\OpenHardwareMonitorLib.dll;.' --add-data '.\libusb-1.0.dll;.' --hide-console minimize-late .\ESP32TwinGUICompanion.py
+
+Launch Hidden Command (better for production):
+
+pyinstaller -F -i '.\splash_screen_ico.ico' --add-data '.\OpenHardwareMonitorLib.dll;.' --add-data '.\libusb-1.0.dll;.' --hide-console hide-early .\ESP32TwinGUICompanion.py
+
+
