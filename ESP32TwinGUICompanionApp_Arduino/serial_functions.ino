@@ -28,16 +28,46 @@ void read_serial() {
         String com_date = jsonDoc["date"].as<String>();
         String com_time = jsonDoc["time"].as<String>();
         String com_day = jsonDoc["day"].as<String>();
+        com_day.remove(3);
 
-        if (com_date != "0") {
+        /*
+                if (com_date != "0" && com_day != "0") {
+                  show_day_and_date_tft_1_bg_1(com_day, com_date);
+                }
 
-        }
-        if (com_time != "0") {
+                if (com_time != "0") {
+                  show_time_tft_1_bg_1(com_time);
+                }
+        */
+        /*
+                if (com_date != "0" && com_day != "0") {
+                  show_day_and_date_tft_1_bg_2(com_day, com_date);
+                }
+        */
+        /*
+                if (com_time != "0") {
+                  show_time_tft_1_bg_2(com_time);
+                }
+        */
+        /*
+                if (com_date != "0" && com_day != "0") {
+                  show_day_and_date_tft_2_bg_1(com_day, com_date);
+                }
+        */
+        /*
+                if (com_time != "0") {
+                  show_time_tft_2_bg_1(com_time);
+                }
+        */
+        /*
+                if (com_date != "0" && com_day != "0") {
+                  show_day_and_date_tft_2_bg_2(com_day, com_date);
+                }
 
-        }
-        if (com_day != "0") {
-
-        }
+                if (com_time != "0") {
+                  show_time_tft_2_bg_2(com_time);
+                }
+        */
 
         if (cpu_temp != "0" && cpu_load != "0") {
           if (cpu_temp.length() == 3) {
@@ -65,6 +95,7 @@ void read_serial() {
             show_cpu_temp_and_load_val_tft_1(cpu_temp, cpu_load, byte_val_cpu_temp, byte_val_cpu_load);
           }
         }
+
 
         /*
                 if (cpu_temp != "0" && cpu_load != "0") {
@@ -240,12 +271,19 @@ void begin_serial() {
   String jsonString;
   serializeJson(jsonDoc, jsonString);
   Serial.println(jsonString);
-  tft_1.fillScreen(GC9A01A_BLACK);
-  tft_2.fillScreen(GC9A01A_BLACK);
-  canvasL_1.fillScreen(0);
-  canvasR_1.fillScreen(0);
-  canvasL_2.fillScreen(0);
-  canvasR_2.fillScreen(0);
+  /*
+    tft_1.fillScreen(GC9A01A_BLACK);
+    tft_2.fillScreen(GC9A01A_BLACK);
+    canvasL_1.fillScreen(0);
+    canvasR_1.fillScreen(0);
+    canvasL_2.fillScreen(0);
+    canvasR_2.fillScreen(0);
+    canvas_1.fillScreen(0);
+    canvas_2.fillScreen(0);
+    canvas_3.fillScreen(0);
+    tft_1_bg_drawn = false;
+    tft_2_bg_drawn = false;
+  */
   serial_begun = true;
 }
 

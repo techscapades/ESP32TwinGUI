@@ -1,3 +1,145 @@
+void show_day_and_date_tft_2_bg_1(String day_val, String date_val) {
+  uint16_t red_val, green_val, blue_val, tft_2_text_color, tft_2_text_bg_color, tft_2_bmp_color;
+  red_val = 198 / brightness_divisor;
+  green_val = 195 / brightness_divisor;
+  blue_val = 198 / brightness_divisor;
+  tft_2_text_color = tft_2.color565(red_val, green_val, blue_val); //light grey
+
+  red_val = 0 / brightness_divisor;
+  green_val = 125 / brightness_divisor;
+  blue_val = 123 / brightness_divisor;
+  tft_2_text_bg_color = tft_2.color565(red_val, green_val, blue_val); //dark cyan
+
+  red_val = 254 / brightness_divisor;
+  green_val = 255 / brightness_divisor;
+  blue_val = 254 / brightness_divisor;
+  tft_2_bmp_color = tft_2.color565(red_val, green_val, blue_val); //dark grey
+
+  if (tft_2_bg_drawn == false) {
+    tft_2.fillScreen(GC9A01A_BLACK);
+    canvas_1.fillScreen(0);
+    canvas_3.fillScreen(0);
+    tft_2.drawBitmap(0, 0, clock_bg1 , 240, 240, tft_2_bmp_color, GC9A01A_BLACK);
+    tft_2_bg_drawn = true;
+    prev_date_val_2 = "";
+    prev_day_val_2 = "";
+  }
+
+  if (prev_date_val_2 != date_val || prev_day_val_2 != day_val) {
+    canvas_1.drawBitmap(0, -70, clock_bg1 , 240, 240, tft_2_text_bg_color, GC9A01A_BLACK);
+    canvas_1.setCursor(42, 9); canvas_1.setTextColor(tft_2_text_color); canvas_1.setTextSize(3); canvas_1.print(day_val);
+    canvas_3.drawBitmap(0, -140, clock_bg1 , 240, 240, tft_2_text_bg_color, GC9A01A_BLACK);
+    canvas_3.setCursor(34, 9); canvas_3.setTextColor(tft_2_text_color); canvas_3.setTextSize(3); canvas_3.print(date_val);
+    tft_2.drawRGBBitmap(0, 70, canvas_1.getBuffer(), canvas_1.width(), canvas_1.height());
+    tft_2.drawRGBBitmap(0, 140, canvas_3.getBuffer(), canvas_3.width(), canvas_3.height());
+  }
+  prev_date_val_2 = date_val;
+  prev_day_val_2 = day_val;
+}
+
+void show_day_and_date_tft_2_bg_2(String day_val, String date_val) {
+  uint16_t red_val, green_val, blue_val, tft_2_text_color, tft_2_text_bg_color, tft_2_bmp_color;
+  red_val = 198 / brightness_divisor;
+  green_val = 195 / brightness_divisor;
+  blue_val = 198 / brightness_divisor;
+  tft_2_text_color = tft_2.color565(red_val, green_val, blue_val); //light grey
+
+  red_val = 0 / brightness_divisor;
+  green_val = 125 / brightness_divisor;
+  blue_val = 123 / brightness_divisor;
+  tft_2_text_bg_color = tft_2.color565(red_val, green_val, blue_val); //dark cyan
+
+  red_val = 254 / brightness_divisor;
+  green_val = 255 / brightness_divisor;
+  blue_val = 254 / brightness_divisor;
+  tft_2_bmp_color = tft_2.color565(red_val, green_val, blue_val); //dark grey
+
+  if (tft_2_bg_drawn == false) {
+    tft_2.fillScreen(GC9A01A_BLACK);
+    canvas_1.fillScreen(0);
+    canvas_3.fillScreen(0);
+    tft_2.drawBitmap(0, 0, clock_bg2 , 240, 240, tft_2_bmp_color, GC9A01A_BLACK);
+    tft_2_bg_drawn = true;
+    prev_date_val_2 = "";
+    prev_day_val_2 = "";
+  }
+
+  if (prev_date_val_2 != date_val || prev_day_val_2 != day_val) {
+    canvas_1.drawBitmap(0, -70, clock_bg2 , 240, 240, tft_2_text_bg_color, GC9A01A_BLACK);
+    canvas_1.setCursor(42, 9); canvas_1.setTextColor(tft_2_text_color); canvas_1.setTextSize(3); canvas_1.print(day_val);
+    canvas_3.drawBitmap(0, -140, clock_bg2 , 240, 240, tft_2_text_bg_color, GC9A01A_BLACK);
+    canvas_3.setCursor(34, 9); canvas_3.setTextColor(tft_2_text_color); canvas_3.setTextSize(3); canvas_3.print(date_val);
+    tft_2.drawRGBBitmap(0, 70, canvas_1.getBuffer(), canvas_1.width(), canvas_1.height());
+    tft_2.drawRGBBitmap(0, 140, canvas_3.getBuffer(), canvas_3.width(), canvas_3.height());
+  }
+  prev_date_val_2 = date_val;
+  prev_day_val_2 = day_val;
+}
+
+void show_time_tft_2_bg_1(String time_val) {
+  uint16_t red_val, green_val, blue_val, tft_2_text_color, tft_2_text_bg_color, tft_2_bmp_color;
+  red_val = 198 / brightness_divisor;
+  green_val = 195 / brightness_divisor;
+  blue_val = 198 / brightness_divisor;
+  tft_2_text_color = tft_2.color565(red_val, green_val, blue_val); //light grey
+
+  red_val = 0 / brightness_divisor;
+  green_val = 125 / brightness_divisor;
+  blue_val = 123 / brightness_divisor;
+  tft_2_text_bg_color = tft_2.color565(red_val, green_val, blue_val); //dark cyan
+
+  red_val = 254 / brightness_divisor;
+  green_val = 255 / brightness_divisor;
+  blue_val = 254 / brightness_divisor;
+  tft_2_bmp_color = tft_2.color565(red_val, green_val, blue_val); //dark grey
+
+  if (tft_2_bg_drawn == false) {
+    tft_2.fillScreen(GC9A01A_BLACK);
+    canvas_2.fillScreen(0);
+    tft_2.drawBitmap(0, 0, clock_bg1 , 240, 240, tft_2_bmp_color, GC9A01A_BLACK);
+    tft_2_bg_drawn = true;
+    prev_time_val_2 = "";
+  }
+  if (prev_time_val_2 != time_val) {
+    canvas_2.drawBitmap(0, -140, clock_bg1 , 240, 240, tft_2_text_bg_color, GC9A01A_BLACK);
+    canvas_2.setCursor(40, 5); canvas_2.setTextColor(tft_2_text_color); canvas_2.setTextSize(4); canvas_2.print(time_val);
+    tft_2.drawRGBBitmap(0, 140, canvas_2.getBuffer(), canvas_2.width(), canvas_2.height());
+  }
+  prev_time_val_2 = time_val;
+}
+
+void show_time_tft_2_bg_2(String time_val) {
+  uint16_t red_val, green_val, blue_val, tft_2_text_color, tft_2_text_bg_color, tft_2_bmp_color;
+  red_val = 198 / brightness_divisor;
+  green_val = 195 / brightness_divisor;
+  blue_val = 198 / brightness_divisor;
+  tft_2_text_color = tft_2.color565(red_val, green_val, blue_val); //light grey
+
+  red_val = 0 / brightness_divisor;
+  green_val = 125 / brightness_divisor;
+  blue_val = 123 / brightness_divisor;
+  tft_2_text_bg_color = tft_2.color565(red_val, green_val, blue_val); //dark cyan
+
+  red_val = 254 / brightness_divisor;
+  green_val = 255 / brightness_divisor;
+  blue_val = 254 / brightness_divisor;
+  tft_2_bmp_color = tft_2.color565(red_val, green_val, blue_val); //dark grey
+
+  if (tft_2_bg_drawn == false) {
+    tft_2.fillScreen(GC9A01A_BLACK);
+    canvas_2.fillScreen(0);
+    tft_2.drawBitmap(0, 0, clock_bg2 , 240, 240, tft_2_bmp_color, GC9A01A_BLACK);
+    tft_2_bg_drawn = true;
+    prev_time_val_2 = "";
+  }
+  if (prev_time_val_2 != time_val) {
+    canvas_2.drawBitmap(0, -140, clock_bg2 , 240, 240, tft_2_text_bg_color, GC9A01A_BLACK);
+    canvas_2.setCursor(40, 5); canvas_2.setTextColor(tft_2_text_color); canvas_2.setTextSize(4); canvas_2.print(time_val);
+    tft_2.drawRGBBitmap(0, 140, canvas_2.getBuffer(), canvas_2.width(), canvas_2.height());
+  }
+  prev_time_val_2 = time_val;
+}
+
 void show_cpu_temp_and_load_val_tft_2(String temp_val, String load_val, int temp_text_color, int load_text_color) {
   uint16_t red_val_L, green_val_L, blue_val_L, red_val_R, green_val_R, blue_val_R, canvasL_2_text_color, canvasR_2_text_color, canvasL_2_w_text_color, canvasR_2_w_text_color;
 

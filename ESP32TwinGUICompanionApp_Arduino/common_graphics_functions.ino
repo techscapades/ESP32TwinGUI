@@ -5,16 +5,45 @@ void init_tfts() {
   tft_2.setRotation(rotate_number);
   tft_1.fillScreen(GC9A01A_BLACK);
   tft_2.fillScreen(GC9A01A_BLACK);
+
   canvasL_1.setTextWrap(false);
   canvasR_1.setTextWrap(false);
   canvasL_2.setTextWrap(false);
   canvasR_2.setTextWrap(false);
+  canvas_1.setTextWrap(false);
+  canvas_2.setTextWrap(false);
+  canvas_3.setTextWrap(false);
+
+
   canvasL_1.fillScreen(0);
   canvasR_1.fillScreen(0);
   canvasL_2.fillScreen(0);
   canvasR_2.fillScreen(0);
-  previous_splash = interval_splash; //just to trigger splashscreen in loop instead os setup
+  canvas_1.fillScreen(0);
+  canvas_2.fillScreen(0);
+  canvas_3.fillScreen(0);
 
+}
+
+void display_homescreen_bmps() {
+  if (millis() - previous_splash > interval_splash) {
+    if (!serial_begun && !tft_1_bg_drawn && !tft_2_bg_drawn) {
+      blackout_logo();
+      uint16_t red_val, green_val, blue_val, tft_1_bmp_color, tft_2_bmp_color;
+      red_val = 254 / brightness_divisor;
+      green_val = 255 / brightness_divisor;
+      blue_val = 254 / brightness_divisor;
+      tft_1_bmp_color = tft_1.color565(red_val, green_val, blue_val); //dark grey
+      tft_2_bmp_color = tft_1.color565(red_val, green_val, blue_val); //dark grey
+      canvas_1.fillScreen(0);
+      canvas_2.fillScreen(0);
+      canvas_3.fillScreen(0);
+      tft_1.drawBitmap(0, 0, clock_bg2 , 240, 240, tft_1_bmp_color, GC9A01A_BLACK);
+      tft_2.drawBitmap(0, 0, clock_bg1 , 240, 240, tft_1_bmp_color, GC9A01A_BLACK);
+      tft_1_bg_drawn = true;
+      tft_2_bg_drawn = true;
+    }
+  }
 }
 
 void cycle_splash_screen() {
@@ -35,9 +64,9 @@ void cycle_splash_screen() {
 
 void blackout_logo() {
   uint16_t red_val, green_val, blue_val;
-  red_val = 254,
-  green_val = 255;
-  blue_val = 254;
+  red_val = 252,
+  green_val = 254;
+  blue_val = 252;
   red_val = red_val / brightness_divisor;
   green_val = green_val / brightness_divisor;
   blue_val = blue_val / brightness_divisor;
@@ -64,9 +93,13 @@ void draw_splash_screen(byte color_scheme) {
   red_val = red_val / brightness_divisor;
   green_val = green_val / brightness_divisor;
   blue_val = blue_val / brightness_divisor;
-
-  tft_1.drawBitmap(38, 54, dqd, 150, 150, tft_1.color565(red_val, green_val, blue_val));
-  tft_2.drawBitmap(38, 54, dqd, 150, 150, tft_2.color565(red_val, green_val, blue_val));
+  if (color_scheme == 8) {
+    tft_1.drawBitmap(38, 54, dqd, 150, 150, GC9A01A_BLACK);
+    tft_2.drawBitmap(38, 54, dqd, 150, 150, GC9A01A_BLACK);
+  } else {
+    tft_1.drawBitmap(38, 54, dqd, 150, 150, tft_1.color565(red_val, green_val, blue_val));
+    tft_2.drawBitmap(38, 54, dqd, 150, 150, tft_2.color565(red_val, green_val, blue_val));
+  }
   yield();
 }
 
@@ -130,8 +163,8 @@ void testFilledRoundRects(byte color_scheme) {
   if (red_val == 0 && green_val == 0 && blue_val == 0) {
     for (i = min(tft_1.width(), tft_1.height()); i > 20; i -= 6) {
       i2 = i / 2;
-      tft_1.fillRoundRect(cx - i2, cy - i2, i, i, i / 8, tft_1.color565(0, 0, 0));
-      tft_2.fillRoundRect(cx - i2, cy - i2, i, i, i / 8, tft_2.color565(0, 0, 0));
+      tft_1.fillRoundRect(cx - i2, cy - i2, i, i, i / 8, tft_1.color565(abs((254 - i) / brightness_divisor), abs((254 - i) / brightness_divisor), abs((254 - i) / brightness_divisor)));
+      tft_2.fillRoundRect(cx - i2, cy - i2, i, i, i / 8, tft_2.color565(abs((254 - i) / brightness_divisor), abs((254 - i) / brightness_divisor), abs((254 - i) / brightness_divisor)));
       yield();
     }
   } else {
