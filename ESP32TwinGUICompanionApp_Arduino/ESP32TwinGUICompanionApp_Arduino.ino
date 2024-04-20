@@ -197,22 +197,48 @@ const unsigned char dqd[] PROGMEM = {
 Adafruit_GC9A01A tft_1(TFT_CS_1, TFT_DC);
 Adafruit_GC9A01A tft_2(TFT_CS_2, TFT_DC);
 
+uint16_t brightness_divisor_array[] = {2, 1, 8, 6, 4};
+byte brightness_divisor_array_size = sizeof(brightness_divisor_array) / 2;
+byte brightness_divisor_array_current_element = 0;
+uint16_t brightness_divisor = brightness_divisor_array[brightness_divisor_array_current_element];
+byte brightness_divisor_button = 7;
+
 #include <ArduinoJson.h>
 //this baud rate must be the same as with the python code
 const int baud_rate = 115200;
 const String device = "ESP32TwinGUI";
 String prev_cpu_temp_val;
 String prev_gpu_temp_val;
+String prev_cpu_load_val;
+String prev_gpu_load_val;
 
-byte exit_serial_button = 5;
+bool serial_begun = false;
+byte exit_serial_switch = 5;
+
+byte tft_1_UI_button = 0;
+byte tft_2_UI_button = 10;
+byte tft_1_UI_page = 0;
+byte tft_2_UI_page = 0;
+
+unsigned long previous_splash = 0;
+unsigned long interval_splash = 20000;
+byte splash_number = 0;
+byte rotate_number = 0; // 0-3
+
+GFXcanvas16 canvasL_1(120, 240);
+GFXcanvas16 canvasR_1(120, 240);
+GFXcanvas16 canvasL_2(120, 240);
+GFXcanvas16 canvasR_2(120, 240);
 
 void setup() {
   Serial.begin(baud_rate);
   init_tfts();
   init_buttons();
-
 }
 
 void loop() {
+
+  cycle_splash_screen();
   read_serial();
+  yield();
 }
