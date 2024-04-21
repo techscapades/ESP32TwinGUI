@@ -1095,7 +1095,8 @@ const static unsigned char dqd[] PROGMEM = {
   0x00, 0x00
 };
 
-
+#include <SPIFFS.h>
+#include <FS.h>
 #include "SPI.h"
 #include "Adafruit_GFX.h"
 #include "Adafruit_GC9A01A.h"
@@ -1155,6 +1156,11 @@ String prev_day_val_2 = "";
 String prev_time_val_2 = "";
 
 long random_number = 0;
+const char* brightness_file_path = "/brightness.txt";
+const char* tft_screen_1_file_path = "/tft_1.txt";
+const char* tft_screen_2_file_path = "/tft_2.txt";
+
+bool continue_rw = false;
 
 void setup() {
   randomSeed(analogRead(5));
