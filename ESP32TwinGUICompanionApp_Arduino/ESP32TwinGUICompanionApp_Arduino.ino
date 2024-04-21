@@ -1112,7 +1112,7 @@ uint16_t brightness_divisor_array[] = {2, 1, 8, 6, 4};
 byte brightness_divisor_array_size = sizeof(brightness_divisor_array) / 2;
 byte brightness_divisor_array_current_element = 0;
 uint16_t brightness_divisor = brightness_divisor_array[brightness_divisor_array_current_element];
-byte brightness_divisor_button = 7;
+byte brightness_divisor_button = 0;
 
 #include <ArduinoJson.h>
 //this baud rate must be the same as with the python code
@@ -1126,10 +1126,11 @@ String prev_gpu_load_val;
 bool serial_begun = false;
 byte exit_serial_switch = 5;
 
-byte tft_1_UI_button = 0;
-byte tft_2_UI_button = 10;
-byte tft_1_UI_page = 0;
-byte tft_2_UI_page = 0;
+byte tft_1_UI_button = 10;
+byte tft_2_UI_button = 7;
+byte tft_1_UI_page = 1;
+byte tft_2_UI_page = 1;
+byte tft_UI_pages = 5;
 
 unsigned long previous_splash = 0;
 unsigned long interval_splash = 6000;
@@ -1174,5 +1175,6 @@ void setup() {
 void loop() {
   read_serial();
   display_homescreen_bmps();
+  poll_buttons_and_switches();
   yield();
 }

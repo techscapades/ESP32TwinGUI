@@ -38,6 +38,8 @@ void display_homescreen_bmps() {
       canvas_1.fillScreen(0);
       canvas_2.fillScreen(0);
       canvas_3.fillScreen(0);
+      tft_1.fillScreen(GC9A01A_BLACK);
+      tft_2.fillScreen(GC9A01A_BLACK);
       tft_1.drawBitmap(0, 0, clock_bg2 , 240, 240, tft_1_bmp_color, GC9A01A_BLACK);
       tft_2.drawBitmap(0, 0, clock_bg1 , 240, 240, tft_1_bmp_color, GC9A01A_BLACK);
       tft_1_bg_drawn = true;
