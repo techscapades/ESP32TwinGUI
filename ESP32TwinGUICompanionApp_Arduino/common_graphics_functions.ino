@@ -25,6 +25,40 @@ void init_tfts() {
 
 }
 
+void refresh_all_screen_components() {
+  tft_1.fillScreen(GC9A01A_BLACK);
+  tft_2.fillScreen(GC9A01A_BLACK);
+  canvasL_1.fillScreen(0);
+  canvasR_1.fillScreen(0);
+  canvasL_2.fillScreen(0);
+  canvasR_2.fillScreen(0);
+  canvas_1.fillScreen(0);
+  canvas_2.fillScreen(0);
+  canvas_3.fillScreen(0);
+  tft_1_bg_drawn = false;
+  tft_2_bg_drawn = false;
+}
+
+void refresh_screen_1_components() {
+  tft_1.fillScreen(GC9A01A_BLACK);
+  canvasL_1.fillScreen(0);
+  canvasR_1.fillScreen(0);
+  canvas_1.fillScreen(0);
+  canvas_2.fillScreen(0);
+  canvas_3.fillScreen(0);
+  tft_1_bg_drawn = false;
+}
+
+void refresh_screen_2_components() {
+  tft_2.fillScreen(GC9A01A_BLACK);
+  canvasL_2.fillScreen(0);
+  canvasR_2.fillScreen(0);
+  canvas_1.fillScreen(0);
+  canvas_2.fillScreen(0);
+  canvas_3.fillScreen(0);
+  tft_2_bg_drawn = false;
+}
+
 void display_homescreen_bmps() {
   if (millis() - previous_splash > interval_splash) {
     if (!serial_begun && !tft_1_bg_drawn && !tft_2_bg_drawn) {

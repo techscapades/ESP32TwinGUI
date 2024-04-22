@@ -196,7 +196,7 @@ void read_serial() {
 
 
         switch (tft_2_UI_page) {
-          case 1:
+          case 3:
             if (cpu_temp != "0") {
               if (cpu_temp.length() == 3) {
                 cpu_temp = "0" + cpu_temp;
@@ -213,7 +213,7 @@ void read_serial() {
               }
             }
             break;
-          case 2:
+          case 4:
             if (cpu_load != "0") {
               if (cpu_load.length() == 3) {
                 cpu_load = "0" + cpu_load;
@@ -230,7 +230,7 @@ void read_serial() {
               }
             }
             break;
-          case 3:
+          case 1:
             if (gpu_temp != "0") {
               if (gpu_temp.length() == 3) {
                 gpu_temp = "0" + gpu_temp;
@@ -247,7 +247,7 @@ void read_serial() {
               }
             }
             break;
-          case 4:
+          case 2:
             if (gpu_load != "0") {
               if (gpu_load.length() == 3) {
                 gpu_load = "0" + gpu_load;
@@ -264,7 +264,7 @@ void read_serial() {
               }
             }
             break;
-          case 5:
+          case 6:
             if (cpu_temp != "0" && cpu_load != "0") {
               if (cpu_temp.length() == 3) {
                 cpu_temp = "0" + cpu_temp;
@@ -292,7 +292,7 @@ void read_serial() {
               }
             }
             break;
-          case 6:
+          case 5:
             if (gpu_temp != "0" && gpu_load != "0") {
               if (gpu_temp.length() == 3) {
                 gpu_temp = "0" + gpu_temp;
@@ -320,40 +320,40 @@ void read_serial() {
               }
             }
             break;
-          case 7:
-            if (com_date != "0" && com_day != "0") {
-              show_day_and_date_tft_2_bg_1(com_day, com_date);
-            }
-            break;
           case 8:
-            if (com_time != "0") {
-              show_time_tft_2_bg_1(com_time);
-            }
-            break;
-          case 9:
             if (com_date != "0" && com_day != "0") {
               show_day_and_date_tft_2_bg_2(com_day, com_date);
             }
             break;
-          case 10:
+          case 7:
             if (com_time != "0") {
               show_time_tft_2_bg_2(com_time);
             }
             break;
+          case 10:
+            if (com_date != "0" && com_day != "0") {
+              show_day_and_date_tft_2_bg_1(com_day, com_date);
+            }
+            break;
+          case 9:
+            if (com_time != "0") {
+              show_time_tft_2_bg_1(com_time);
+            }
+            break;
           default:
-            if (cpu_temp != "0") {
-              if (cpu_temp.length() == 3) {
-                cpu_temp = "0" + cpu_temp;
+            if (gpu_temp != "0") {
+              if (gpu_temp.length() == 3) {
+                gpu_temp = "0" + gpu_temp;
               }
-              if (cpu_temp.length() == 5) {
-                cpu_temp.remove(3, 2);
+              if (gpu_temp.length() == 5) {
+                gpu_temp.remove(3, 2);
               }
-              // Serial.println(cpu_temp);
-              if (prev_cpu_temp_val_2 != cpu_temp) {
+              // Serial.println(gpu_temp);
+              if (prev_gpu_temp_val_2 != gpu_temp) {
                 int byte_val = 0;
-                int int_val = cpu_temp.toInt();
+                int int_val = gpu_temp.toInt();
                 byte_val = map(int_val, 23, 103, 1, 5);
-                show_cpu_temp_val_tft_2(cpu_temp, byte_val);
+                show_gpu_temp_val_tft_2(gpu_temp, byte_val);
               }
             }
             break;
@@ -397,6 +397,7 @@ void begin_serial() {
     tft_1_bg_drawn = false;
     tft_2_bg_drawn = false;
   */
+  refresh_all_screen_components();
   serial_begun = true;
 }
 

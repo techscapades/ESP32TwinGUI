@@ -1131,11 +1131,11 @@ String prev_gpu_load_val_2;
 bool serial_begun = false;
 byte exit_serial_switch = 5;
 
-byte tft_1_UI_button = 10;
-byte tft_2_UI_button = 7;
-byte tft_1_UI_page = 1;
-byte tft_2_UI_page = 1;
-byte tft_UI_pages = 10;
+uint8_t tft_1_UI_button = 10;
+uint8_t tft_2_UI_button = 7;
+uint8_t tft_1_UI_page = 1;
+uint8_t tft_2_UI_page = 1;
+uint8_t tft_UI_pages = 10;
 
 unsigned long previous_splash = 0;
 unsigned long interval_splash = 6000;
@@ -1172,6 +1172,8 @@ void setup() {
   randomSeed(analogRead(5));
   random_number = random(1, 9);
   Serial.begin(baud_rate);
+  init_spiffs();
+  read_spiffs_files_set_params();
   init_tfts();
   init_buttons();
   draw_splash_screen(random_number);
