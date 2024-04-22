@@ -1118,10 +1118,15 @@ byte brightness_divisor_button = 0;
 //this baud rate must be the same as with the python code
 const int baud_rate = 115200;
 const String device = "ESP32TwinGUI";
-String prev_cpu_temp_val;
-String prev_gpu_temp_val;
-String prev_cpu_load_val;
-String prev_gpu_load_val;
+String prev_cpu_temp_val_1;
+String prev_gpu_temp_val_1;
+String prev_cpu_load_val_1;
+String prev_gpu_load_val_1;
+
+String prev_cpu_temp_val_2;
+String prev_gpu_temp_val_2;
+String prev_cpu_load_val_2;
+String prev_gpu_load_val_2;
 
 bool serial_begun = false;
 byte exit_serial_switch = 5;
@@ -1130,7 +1135,7 @@ byte tft_1_UI_button = 10;
 byte tft_2_UI_button = 7;
 byte tft_1_UI_page = 1;
 byte tft_2_UI_page = 1;
-byte tft_UI_pages = 5;
+byte tft_UI_pages = 10;
 
 unsigned long previous_splash = 0;
 unsigned long interval_splash = 6000;

@@ -306,8 +306,8 @@ void show_cpu_temp_and_load_val_tft_2(String temp_val, String load_val, int temp
   tft_2.drawRGBBitmap(0, 0, canvasL_2.getBuffer(), canvasL_2.width(), canvasL_2.height());
   tft_2.drawRGBBitmap(120, 0, canvasR_2.getBuffer(), canvasR_2.width(), canvasR_2.height());
   yield();
-  prev_cpu_temp_val = temp_val;
-  prev_cpu_load_val = load_val;
+  prev_cpu_temp_val_2 = temp_val;
+  prev_cpu_load_val_2 = load_val;
 }
 
 void show_gpu_temp_and_load_val_tft_2(String temp_val, String load_val, int temp_text_color, int load_text_color) {
@@ -476,8 +476,8 @@ void show_gpu_temp_and_load_val_tft_2(String temp_val, String load_val, int temp
   tft_2.drawRGBBitmap(0, 0, canvasL_2.getBuffer(), canvasL_2.width(), canvasL_2.height());
   tft_2.drawRGBBitmap(120, 0, canvasR_2.getBuffer(), canvasR_2.width(), canvasR_2.height());
   yield();
-  prev_gpu_temp_val = temp_val;
-  prev_gpu_load_val = load_val;
+  prev_gpu_temp_val_2 = temp_val;
+  prev_gpu_load_val_2 = load_val;
 }
 
 void show_cpu_temp_val_tft_2(String temp_val, int text_colour) {
@@ -551,7 +551,7 @@ void show_cpu_temp_val_tft_2(String temp_val, int text_colour) {
   }
 
   tft_2.println(temp_val);
-  prev_cpu_temp_val = temp_val;
+  prev_cpu_temp_val_2 = temp_val;
   yield();
 }
 
@@ -625,7 +625,7 @@ void show_gpu_temp_val_tft_2(String temp_val, int text_colour) {
   }
 
   tft_2.println(temp_val);
-  prev_gpu_temp_val = temp_val;
+  prev_gpu_temp_val_2 = temp_val;
   yield();
 }
 
@@ -702,7 +702,7 @@ void show_cpu_load_val_tft_2(String load_val, int text_colour) {
   }
 
   tft_2.println(load_val);
-  prev_cpu_load_val = load_val;
+  prev_cpu_load_val_2 = load_val;
   yield();
 }
 
@@ -776,6 +776,6 @@ void show_gpu_load_val_tft_2(String load_val, int text_colour) {
   }
 
   tft_2.println(load_val);
-  prev_gpu_load_val = load_val;
+  prev_gpu_load_val_2 = load_val;
   yield();
 }
