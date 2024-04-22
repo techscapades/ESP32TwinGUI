@@ -40,7 +40,7 @@ void read_serial() {
                 cpu_temp.remove(3, 2);
               }
               // Serial.println(cpu_temp);
-              if (prev_cpu_temp_val_1 != cpu_temp) {
+              if (prev_cpu_temp_val_1 != cpu_temp || tft_1_bg_drawn == false) {
                 int byte_val = 0;
                 int int_val = cpu_temp.toInt();
                 byte_val = map(int_val, 23, 103, 1, 5);
@@ -57,7 +57,7 @@ void read_serial() {
                 cpu_load.remove(3, 2);
               }
               // Serial.println(cpu_load);
-              if (prev_cpu_load_val_1 != cpu_load) {
+              if (prev_cpu_load_val_1 != cpu_load || tft_1_bg_drawn == false) {
                 int byte_val = 0;
                 int int_val = cpu_load.toInt();
                 byte_val = map(int_val, 23, 103, 1, 5);
@@ -74,7 +74,7 @@ void read_serial() {
                 gpu_temp.remove(3, 2);
               }
               // Serial.println(gpu_temp);
-              if (prev_gpu_temp_val_1 != gpu_temp) {
+              if (prev_gpu_temp_val_1 != gpu_temp || tft_1_bg_drawn == false) {
                 int byte_val = 0;
                 int int_val = gpu_temp.toInt();
                 byte_val = map(int_val, 23, 103, 1, 5);
@@ -91,7 +91,7 @@ void read_serial() {
                 gpu_load.remove(3, 2);
               }
               // Serial.println(gpu_load);
-              if (prev_gpu_load_val_1 != gpu_load) {
+              if (prev_gpu_load_val_1 != gpu_load || tft_1_bg_drawn == false) {
                 int byte_val = 0;
                 int int_val = gpu_load.toInt();
                 byte_val = map(int_val, 23, 103, 1, 5);
@@ -115,7 +115,7 @@ void read_serial() {
               }
               // Serial.println(cpu_temp);
               // Serial.println(cpu_load);
-              if (prev_cpu_temp_val_1 != cpu_temp || prev_cpu_load_val_1 != cpu_load) {
+              if (prev_cpu_temp_val_1 != cpu_temp || prev_cpu_load_val_1 != cpu_load || tft_1_bg_drawn == false) {
                 int byte_val_cpu_temp = 0;
                 int int_val_cpu_temp = cpu_temp.toInt();
                 int byte_val_cpu_load = 0;
@@ -143,7 +143,7 @@ void read_serial() {
               }
               // Serial.println(gpu_temp);
               // Serial.println(gpu_load);
-              if (prev_gpu_temp_val_1 != gpu_temp || prev_gpu_load_val_1 != gpu_load) {
+              if (prev_gpu_temp_val_1 != gpu_temp || prev_gpu_load_val_1 != gpu_load || tft_1_bg_drawn == false) {
                 int byte_val_gpu_temp = 0;
                 int int_val_gpu_temp = gpu_temp.toInt();
                 int byte_val_gpu_load = 0;
@@ -156,22 +156,22 @@ void read_serial() {
             }
             break;
           case 7:
-            if (com_date != "0" && com_day != "0") {
+            if (com_date != "0" && com_day != "0" || tft_1_bg_drawn == false) {
               show_day_and_date_tft_1_bg_1(com_day, com_date);
             }
             break;
           case 8:
-            if (com_time != "0") {
+            if (com_time != "0" || tft_1_bg_drawn == false) {
               show_time_tft_1_bg_1(com_time);
             }
             break;
           case 9:
-            if (com_date != "0" && com_day != "0") {
+            if (com_date != "0" && com_day != "0" || tft_1_bg_drawn == false) {
               show_day_and_date_tft_1_bg_2(com_day, com_date);
             }
             break;
           case 10:
-            if (com_time != "0") {
+            if (com_time != "0" || tft_1_bg_drawn == false) {
               show_time_tft_1_bg_2(com_time);
             }
             break;
@@ -184,7 +184,7 @@ void read_serial() {
                 cpu_temp.remove(3, 2);
               }
               // Serial.println(cpu_temp);
-              if (prev_cpu_temp_val_1 != cpu_temp) {
+              if (prev_cpu_temp_val_1 != cpu_temp || tft_1_bg_drawn == false) {
                 int byte_val = 0;
                 int int_val = cpu_temp.toInt();
                 byte_val = map(int_val, 23, 103, 1, 5);
@@ -205,7 +205,7 @@ void read_serial() {
                 cpu_temp.remove(3, 2);
               }
               // Serial.println(cpu_temp);
-              if (prev_cpu_temp_val_2 != cpu_temp) {
+              if (prev_cpu_temp_val_2 != cpu_temp || tft_2_bg_drawn == false) {
                 int byte_val = 0;
                 int int_val = cpu_temp.toInt();
                 byte_val = map(int_val, 23, 103, 1, 5);
@@ -222,7 +222,7 @@ void read_serial() {
                 cpu_load.remove(3, 2);
               }
               // Serial.println(cpu_load);
-              if (prev_cpu_load_val_2 != cpu_load) {
+              if (prev_cpu_load_val_2 != cpu_load || tft_2_bg_drawn == false) {
                 int byte_val = 0;
                 int int_val = cpu_load.toInt();
                 byte_val = map(int_val, 23, 103, 1, 5);
@@ -239,7 +239,7 @@ void read_serial() {
                 gpu_temp.remove(3, 2);
               }
               // Serial.println(gpu_temp);
-              if (prev_gpu_temp_val_2 != gpu_temp) {
+              if (prev_gpu_temp_val_2 != gpu_temp || tft_2_bg_drawn == false) {
                 int byte_val = 0;
                 int int_val = gpu_temp.toInt();
                 byte_val = map(int_val, 23, 103, 1, 5);
@@ -256,7 +256,7 @@ void read_serial() {
                 gpu_load.remove(3, 2);
               }
               // Serial.println(gpu_load);
-              if (prev_gpu_load_val_2 != gpu_load) {
+              if (prev_gpu_load_val_2 != gpu_load || tft_2_bg_drawn == false) {
                 int byte_val = 0;
                 int int_val = gpu_load.toInt();
                 byte_val = map(int_val, 23, 103, 1, 5);
@@ -280,7 +280,7 @@ void read_serial() {
               }
               // Serial.println(cpu_temp);
               // Serial.println(cpu_load);
-              if (prev_cpu_temp_val_2 != cpu_temp || prev_cpu_load_val_2 != cpu_load) {
+              if (prev_cpu_temp_val_2 != cpu_temp || prev_cpu_load_val_2 != cpu_load || tft_2_bg_drawn == false) {
                 int byte_val_cpu_temp = 0;
                 int int_val_cpu_temp = cpu_temp.toInt();
                 int byte_val_cpu_load = 0;
@@ -308,7 +308,7 @@ void read_serial() {
               }
               // Serial.println(gpu_temp);
               // Serial.println(gpu_load);
-              if (prev_gpu_temp_val_2 != gpu_temp || prev_gpu_load_val_2 != gpu_load) {
+              if (prev_gpu_temp_val_2 != gpu_temp || prev_gpu_load_val_2 != gpu_load || tft_2_bg_drawn == false) {
                 int byte_val_gpu_temp = 0;
                 int int_val_gpu_temp = gpu_temp.toInt();
                 int byte_val_gpu_load = 0;
@@ -321,22 +321,22 @@ void read_serial() {
             }
             break;
           case 8:
-            if (com_date != "0" && com_day != "0") {
+            if (com_date != "0" && com_day != "0" || tft_2_bg_drawn == false) {
               show_day_and_date_tft_2_bg_2(com_day, com_date);
             }
             break;
           case 7:
-            if (com_time != "0") {
+            if (com_time != "0" || tft_2_bg_drawn == false) {
               show_time_tft_2_bg_2(com_time);
             }
             break;
           case 10:
-            if (com_date != "0" && com_day != "0") {
+            if (com_date != "0" && com_day != "0" || tft_2_bg_drawn == false) {
               show_day_and_date_tft_2_bg_1(com_day, com_date);
             }
             break;
           case 9:
-            if (com_time != "0") {
+            if (com_time != "0" || tft_2_bg_drawn == false) {
               show_time_tft_2_bg_1(com_time);
             }
             break;
@@ -349,7 +349,7 @@ void read_serial() {
                 gpu_temp.remove(3, 2);
               }
               // Serial.println(gpu_temp);
-              if (prev_gpu_temp_val_2 != gpu_temp) {
+              if (prev_gpu_temp_val_2 != gpu_temp || tft_2_bg_drawn == false) {
                 int byte_val = 0;
                 int int_val = gpu_temp.toInt();
                 byte_val = map(int_val, 23, 103, 1, 5);

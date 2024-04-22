@@ -1109,10 +1109,10 @@ Adafruit_GC9A01A tft_1(TFT_CS_1, TFT_DC);
 Adafruit_GC9A01A tft_2(TFT_CS_2, TFT_DC);
 
 uint16_t brightness_divisor_array[] = {2, 1, 8, 6, 4};
-byte brightness_divisor_array_size = sizeof(brightness_divisor_array) / 2;
-byte brightness_divisor_array_current_element = 0;
+uint8_t brightness_divisor_array_size = sizeof(brightness_divisor_array) / 2;
+int brightness_divisor_array_current_element = 0;
 uint16_t brightness_divisor = brightness_divisor_array[brightness_divisor_array_current_element];
-byte brightness_divisor_button = 0;
+
 
 #include <ArduinoJson.h>
 //this baud rate must be the same as with the python code
@@ -1131,11 +1131,10 @@ String prev_gpu_load_val_2;
 bool serial_begun = false;
 byte exit_serial_switch = 5;
 
-uint8_t tft_1_UI_button = 10;
-uint8_t tft_2_UI_button = 7;
-uint8_t tft_1_UI_page = 1;
-uint8_t tft_2_UI_page = 1;
-uint8_t tft_UI_pages = 10;
+
+int tft_1_UI_page = 1;
+int tft_2_UI_page = 1;
+int tft_UI_pages = 10;
 
 unsigned long previous_splash = 0;
 unsigned long interval_splash = 6000;
@@ -1167,6 +1166,28 @@ const char* tft_screen_1_file_path = "/tft_1.txt";
 const char* tft_screen_2_file_path = "/tft_2.txt";
 
 bool continue_rw = false;
+
+const int SHORT_PRESS_TIME = 500; // 1000 milliseconds
+const int LONG_PRESS_TIME  = 500; // 1000 milliseconds
+
+byte brightness_divisor_button = 0;
+byte brightness_divisor_button_lastState = LOW;
+byte brightness_divisor_button_currentState;
+unsigned long brightness_divisor_button_pressedTime = 0;
+unsigned long brightness_divisor_button_releasedTime = 0;
+
+uint8_t tft_1_UI_button = 10;
+byte tft_1_UI_button_lastState = LOW;
+byte tft_1_UI_button_currentState;
+unsigned long tft_1_UI_button_pressedTime = 0;
+unsigned long tft_1_UI_button_releasedTime = 0;
+
+uint8_t tft_2_UI_button = 7;
+byte tft_2_UI_button_lastState = LOW;
+byte tft_2_UI_button_currentState;
+unsigned long tft_2_UI_button_pressedTime = 0;
+unsigned long tft_2_UI_button_releasedTime = 0;
+
 
 void setup() {
   randomSeed(analogRead(5));
