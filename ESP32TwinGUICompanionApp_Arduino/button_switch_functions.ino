@@ -6,12 +6,13 @@ void init_buttons() {
 }
 
 void poll_exit_switch() {
-  //if this switch is set to LOW, it'll exit the desktop app and reset the board
-  if (digitalRead(exit_serial_switch) == LOW) {
-    unsigned long time_now = millis();
-    while (millis() - time_now < 20000) {
-      exit_serial();
-      delay(10);
+  if (millis() - previous_end_poll > interval_end_poll) {
+    if (digitalRead(exit_serial_switch) == LOW) {
+      unsigned long time_now = millis();
+      while (millis() - time_now < 120000) {
+        exit_serial();
+        delay(10);
+      }
     }
   }
 }

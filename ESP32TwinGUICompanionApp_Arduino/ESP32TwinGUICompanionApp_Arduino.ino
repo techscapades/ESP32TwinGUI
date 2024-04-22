@@ -1131,13 +1131,14 @@ String prev_gpu_load_val_2;
 bool serial_begun = false;
 byte exit_serial_switch = 5;
 
-
 int tft_1_UI_page = 1;
 int tft_2_UI_page = 1;
 int tft_UI_pages = 10;
 
 unsigned long previous_splash = 0;
 unsigned long interval_splash = 6000;
+unsigned long previous_end_poll = 0;
+unsigned long interval_end_poll = 5500;
 byte splash_number = 0;
 byte rotate_number = 0; // 0-3
 

@@ -432,4 +432,7 @@ void exit_serial() {
   serializeJson(jsonDoc, jsonString);
   Serial.println(jsonString);
   serial_begun = false;
+  refresh_all_screen_components();
+  tft_1_bg_drawn = true;
+  tft_2_bg_drawn = true;
 }
