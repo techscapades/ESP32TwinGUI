@@ -1,0 +1,14 @@
+Bill of Materials:
+
+Quantity	Name				Source
+1		PCB				/PCB, send gerber.zip to manufacturer
+1		ESP32C3 supermini		https://www.aliexpress.com/item/1005006295440227.html
+2		GC9A01 TFT display		https://www.aliexpress.com/item/1005004481969638.html
+3		TTP223 touch button		https://www.aliexpress.com/item/32451787420.html
+1		SS12D00 4/5mm slide switch	https://www.aliexpress.com/item/4001207529493.html
+4		M3 5mm OD brass insert nut	https://www.aliexpress.com/item/33006617043.html
+1		USB C cable			https://www.aliexpress.com/item/1005005523170719.html
+1		Top case			/3D files/3D printed parts
+1		Bottom case			/3D files/3D printed parts
+1		ESP32C3SM PCB spacer		/3D files/3D printed parts
+2		stand				/3D files/3D printed parts
