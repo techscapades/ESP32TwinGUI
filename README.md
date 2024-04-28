@@ -34,7 +34,9 @@ as a display module in your own projects.
 Because it's an ESP32 it can also get information through
 WiFi and I've exposed the 5V and GND connections exposed
 so users can connect their own batteries to it, just drill a
-hole in the bottom housing.
+hole in the bottom housing and solder the power wires, to the 
+exposed pads, alternatively, you can just plug in a power bank 
+via the usb C port.
 
 This is a fully open source project and anyone is 
 welcome to improve and or modify it as they see fit,
