@@ -1,3 +1,5 @@
+![wireframe_front](https://github.com/techscapades/ESP32TwinGUI/assets/76870663/fcc75725-d898-469d-9d13-fc4b4436a89a)
+
 This App scan for the ESP32TwinGUI board,
 automatically registers it and its serial port
 and then sends it the average CPU temp and load,
