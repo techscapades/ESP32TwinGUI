@@ -1109,30 +1109,36 @@ Adafruit_GC9A01A tft_1(TFT_CS_1, TFT_DC);
 Adafruit_GC9A01A tft_2(TFT_CS_2, TFT_DC);
 
 uint16_t brightness_divisor_array[] = {2, 1, 8, 6, 4};
-byte brightness_divisor_array_size = sizeof(brightness_divisor_array) / 2;
-byte brightness_divisor_array_current_element = 0;
+uint8_t brightness_divisor_array_size = sizeof(brightness_divisor_array) / 2;
+int brightness_divisor_array_current_element = 0;
 uint16_t brightness_divisor = brightness_divisor_array[brightness_divisor_array_current_element];
-byte brightness_divisor_button = 7;
+
 
 #include <ArduinoJson.h>
 //this baud rate must be the same as with the python code
 const int baud_rate = 115200;
 const String device = "ESP32TwinGUI";
-String prev_cpu_temp_val;
-String prev_gpu_temp_val;
-String prev_cpu_load_val;
-String prev_gpu_load_val;
+String prev_cpu_temp_val_1;
+String prev_gpu_temp_val_1;
+String prev_cpu_load_val_1;
+String prev_gpu_load_val_1;
+
+String prev_cpu_temp_val_2;
+String prev_gpu_temp_val_2;
+String prev_cpu_load_val_2;
+String prev_gpu_load_val_2;
 
 bool serial_begun = false;
 byte exit_serial_switch = 5;
 
-byte tft_1_UI_button = 0;
-byte tft_2_UI_button = 10;
-byte tft_1_UI_page = 0;
-byte tft_2_UI_page = 0;
+int tft_1_UI_page = 1;
+int tft_2_UI_page = 1;
+int tft_UI_pages = 10;
 
 unsigned long previous_splash = 0;
 unsigned long interval_splash = 6000;
+unsigned long previous_end_poll = 0;
+unsigned long interval_end_poll = 5500;
 byte splash_number = 0;
 byte rotate_number = 0; // 0-3
 
@@ -1162,10 +1168,34 @@ const char* tft_screen_2_file_path = "/tft_2.txt";
 
 bool continue_rw = false;
 
+const int SHORT_PRESS_TIME = 500; // 1000 milliseconds
+const int LONG_PRESS_TIME  = 500; // 1000 milliseconds
+
+byte brightness_divisor_button = 0;
+byte brightness_divisor_button_lastState = LOW;
+byte brightness_divisor_button_currentState;
+unsigned long brightness_divisor_button_pressedTime = 0;
+unsigned long brightness_divisor_button_releasedTime = 0;
+
+uint8_t tft_1_UI_button = 10;
+byte tft_1_UI_button_lastState = LOW;
+byte tft_1_UI_button_currentState;
+unsigned long tft_1_UI_button_pressedTime = 0;
+unsigned long tft_1_UI_button_releasedTime = 0;
+
+uint8_t tft_2_UI_button = 7;
+byte tft_2_UI_button_lastState = LOW;
+byte tft_2_UI_button_currentState;
+unsigned long tft_2_UI_button_pressedTime = 0;
+unsigned long tft_2_UI_button_releasedTime = 0;
+
+
 void setup() {
   randomSeed(analogRead(5));
   random_number = random(1, 9);
   Serial.begin(baud_rate);
+  init_spiffs();
+  read_spiffs_files_set_params();
   init_tfts();
   init_buttons();
   draw_splash_screen(random_number);
@@ -1174,5 +1204,6 @@ void setup() {
 void loop() {
   read_serial();
   display_homescreen_bmps();
+  poll_buttons_and_switches();
   yield();
 }
