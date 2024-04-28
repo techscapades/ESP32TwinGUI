@@ -5,7 +5,9 @@ average GPU temp and load, and the datetime. Information
 is sent throught serial at 115200 baud in a JSON object
 
 Currently available for windows only, releases
-for other softwares coming out later.
+for other softwares coming out later. I have already
+pre-compiled 2 versions of the app, and have left
+instructions as to how to compile it yourself too.
 
 I was motivated to make this because I wanted to 
 monitor my CPU and GPU temps while gaming without
@@ -25,7 +27,10 @@ labelling of serial devices as per my other repo.
 
 I have deliberately exposed the I2C pins to allow
 for add-ons like an accelerometer to change the 
-screen orientation etc.. all information is documeted. 
+screen orientation on the fly, alternatively, these pins 
+can be used as software serial pins to use the 2 displays 
+as a display module in your own projects.
+
 Because it's an ESP32 it can also get information through
 WiFi and I've exposed the 5V and GND connections exposed
 so users can connect their own batteries to it, just drill a
