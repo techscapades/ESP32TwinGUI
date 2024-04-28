@@ -1,7 +1,7 @@
 Bill of Materials:
 
 Quantity	Name				Source
-1		PCB				/PCB, send gerber.zip to manufacturer
+1		PCB				/PCB, send gerbers.zip to manufacturer, I use JLCPCB (No I'm not sponsored)
 1		ESP32C3 supermini		https://www.aliexpress.com/item/1005006295440227.html
 2		GC9A01 TFT display		https://www.aliexpress.com/item/1005004481969638.html
 3		TTP223 touch button		https://www.aliexpress.com/item/32451787420.html
@@ -12,3 +12,4 @@ Quantity	Name				Source
 1		Bottom case			/3D files/3D printed parts
 1		ESP32C3SM PCB spacer		/3D files/3D printed parts
 2		stand				/3D files/3D printed parts
+4		M3x12 CSK screws		https://www.aliexpress.com/item/32975242274.html
