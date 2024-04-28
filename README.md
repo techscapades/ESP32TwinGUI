@@ -1,5 +1,3 @@
-![wireframe_front](https://github.com/techscapades/ESP32TwinGUI/assets/76870663/fcc75725-d898-469d-9d13-fc4b4436a89a)
-
 ![ESP32TwinGUI_to_render front clear](https://github.com/techscapades/ESP32TwinGUI/assets/76870663/1a225e11-2566-4090-a64b-c9b52c310eb4)
 
 This App scan for the ESP32TwinGUI board,
@@ -45,3 +43,5 @@ via the usb C port.
 This is a fully open source project and anyone is 
 welcome to improve and or modify it as they see fit,
 stay creative and enjoy!!
+
+![wireframe_front](https://github.com/techscapades/ESP32TwinGUI/assets/76870663/fcc75725-d898-469d-9d13-fc4b4436a89a)
