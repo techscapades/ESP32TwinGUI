@@ -631,6 +631,7 @@ void show_gpu_temp_val_tft_2(String temp_val, int text_colour) {
 
 /*=====================================================================================================================================================*/
 
+
 void show_cpu_load_val_tft_2(String load_val, int text_colour) {
 
   uint16_t red_val, green_val, blue_val, tft_2_text_color;
@@ -694,7 +695,7 @@ void show_cpu_load_val_tft_2(String load_val, int text_colour) {
       blue_val = 255 / brightness_divisor;
       tft_2_text_color = tft_2.color565(red_val, green_val, blue_val);
 
-      tft_2.setTextColor(tft_2_text_color);
+      tft_2.setTextColor(tft_2_text_color, GC9A01A_BLACK);
       tft_2.drawCircle(120, 120, 119, tft_2_text_color);
       tft_2.drawCircle(120, 120, 118, tft_2_text_color);
       tft_2.drawCircle(120, 120, 117, tft_2_text_color);
@@ -702,7 +703,7 @@ void show_cpu_load_val_tft_2(String load_val, int text_colour) {
   }
 
   tft_2.println(load_val);
-  prev_cpu_load_val_2 = load_val;
+  prev_cpu_load_val_1 = load_val;
   yield();
 }
 
