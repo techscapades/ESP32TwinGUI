@@ -1168,8 +1168,8 @@ const char* tft_screen_2_file_path = "/tft_2.txt";
 
 bool continue_rw = false;
 
-const int SHORT_PRESS_TIME = 500; // 1000 milliseconds
-const int LONG_PRESS_TIME  = 500; // 1000 milliseconds
+const int SHORT_PRESS_TIME = 300; // 1000 milliseconds
+const int LONG_PRESS_TIME  = 300; // 1000 milliseconds
 
 byte brightness_divisor_button = 0;
 byte brightness_divisor_button_lastState = LOW;

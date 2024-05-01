@@ -58,15 +58,20 @@ void poll_brightness_divisor_button() {
       }
     }
   }
+  brightness_divisor_button_lastState = brightness_divisor_button_currentState;
 
   if (change_detected) {
     writeFile(brightness_file_path, brightness_divisor_array_current_element);
     tft_1_bg_drawn = false;
     tft_2_bg_drawn = false;
     brightness_divisor = brightness_divisor_array[brightness_divisor_array_current_element];
+    if (serial_begun) {
+      tft_1_switch(prev_cpu_temp_val_1, prev_gpu_temp_val_1, prev_cpu_load_val_1, prev_gpu_load_val_1, prev_date_val_1, prev_time_val_1, prev_day_val_1);
+      tft_2_switch(prev_cpu_temp_val_2, prev_gpu_temp_val_2, prev_cpu_load_val_2, prev_gpu_load_val_2, prev_date_val_2, prev_time_val_2, prev_day_val_2);
+    }
   }
 
-  brightness_divisor_button_lastState = brightness_divisor_button_currentState;
+
 }
 
 void poll_tft_UI_buttons() {
@@ -112,14 +117,14 @@ void poll_tft_UI_buttons() {
     }
   }
   //Serial.println(tft_1_UI_page);
+  tft_1_UI_button_lastState = tft_1_UI_button_currentState;
+
   if (tft_1_change_detected && serial_begun) {
     writeFile(tft_screen_1_file_path, tft_1_UI_page);
     tft_1_bg_drawn = false;
     refresh_screen_1_components();
+    tft_1_switch(prev_cpu_temp_val_1, prev_gpu_temp_val_1, prev_cpu_load_val_1, prev_gpu_load_val_1, prev_date_val_1, prev_time_val_1, prev_day_val_1);
   }
-
-  tft_1_UI_button_lastState = tft_1_UI_button_currentState;
-
 
 
   /*
@@ -161,13 +166,14 @@ void poll_tft_UI_buttons() {
     }
   }
   //Serial.println(tft_2_UI_page);
+  tft_2_UI_button_lastState = tft_2_UI_button_currentState;
+
   if (tft_2_change_detected && serial_begun) {
     writeFile(tft_screen_2_file_path, tft_2_UI_page);
     tft_2_bg_drawn = false;
     refresh_screen_2_components();
+    tft_2_switch(prev_cpu_temp_val_2, prev_gpu_temp_val_2, prev_cpu_load_val_2, prev_gpu_load_val_2, prev_date_val_2, prev_time_val_2, prev_day_val_2);
   }
-
-  tft_2_UI_button_lastState = tft_2_UI_button_currentState;
 }
 
 void poll_buttons_and_switches() {

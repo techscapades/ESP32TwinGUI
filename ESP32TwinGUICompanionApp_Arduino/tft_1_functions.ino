@@ -1,3 +1,233 @@
+void tft_1_switch(String cpu_temp, String gpu_temp, String cpu_load, String gpu_load, String com_date, String com_time, String com_day) {
+  switch (tft_1_UI_page) {
+    case 1:
+      if (cpu_temp != "0") {
+        if (cpu_temp.length() == 3) {
+          cpu_temp = "0" + cpu_temp;
+        }
+        if (cpu_temp.length() == 5) {
+          cpu_temp.remove(3, 2);
+        }
+        // Serial.println(cpu_temp);
+        if (prev_cpu_temp_val_1 != cpu_temp) {
+          int byte_val = 0;
+          int int_val = cpu_temp.toInt();
+          byte_val = map(int_val, 23, 103, 1, 5);
+          show_cpu_temp_val_tft_1(cpu_temp, byte_val);
+          tft_1_bg_drawn = true;
+        }
+        if (tft_1_bg_drawn == false) {
+          int byte_val = 0;
+          int int_val = prev_cpu_temp_val_1.toInt();
+          byte_val = map(int_val, 23, 103, 1, 5);
+          show_cpu_temp_val_tft_1(prev_cpu_temp_val_1, byte_val);
+          tft_1_bg_drawn = true;
+        }
+      }
+      break;
+    case 2:
+      if (cpu_load != "0") {
+        if (cpu_load.length() == 3) {
+          cpu_load = "0" + cpu_load;
+        }
+        if (cpu_load.length() == 5) {
+          cpu_load.remove(3, 2);
+        }
+        // Serial.println(cpu_load);
+        if (prev_cpu_load_val_1 != cpu_load) {
+          int byte_val = 0;
+          int int_val = cpu_load.toInt();
+          byte_val = map(int_val, 23, 103, 1, 5);
+          show_cpu_load_val_tft_1(cpu_load, byte_val);
+          tft_1_bg_drawn = true;
+        }
+        if (tft_1_bg_drawn == false) {
+          int byte_val = 0;
+          int int_val = prev_cpu_load_val_1.toInt();
+          byte_val = map(int_val, 23, 103, 1, 5);
+          show_cpu_load_val_tft_1(prev_cpu_load_val_1, byte_val);
+          tft_1_bg_drawn = true;
+        }
+      }
+      break;
+    case 3:
+      if (gpu_temp != "0") {
+        if (gpu_temp.length() == 3) {
+          gpu_temp = "0" + gpu_temp;
+        }
+        if (gpu_temp.length() == 5) {
+          gpu_temp.remove(3, 2);
+        }
+        // Serial.println(gpu_temp);
+        if (prev_gpu_temp_val_1 != gpu_temp) {
+          int byte_val = 0;
+          int int_val = gpu_temp.toInt();
+          byte_val = map(int_val, 23, 103, 1, 5);
+          show_gpu_temp_val_tft_1(gpu_temp, byte_val);
+          tft_1_bg_drawn = true;
+        }
+        if (tft_1_bg_drawn == false) {
+          int byte_val = 0;
+          int int_val = prev_gpu_temp_val_1.toInt();
+          byte_val = map(int_val, 23, 103, 1, 5);
+          show_gpu_temp_val_tft_1(prev_gpu_temp_val_1, byte_val);
+          tft_1_bg_drawn = true;
+        }
+      }
+      break;
+    case 4:
+      if (gpu_load != "0") {
+        if (gpu_load.length() == 3) {
+          gpu_load = "0" + gpu_load;
+        }
+        if (gpu_load.length() == 5) {
+          gpu_load.remove(3, 2);
+        }
+        // Serial.println(gpu_load);
+        if (prev_gpu_load_val_1 != gpu_load) {
+          int byte_val = 0;
+          int int_val = gpu_load.toInt();
+          byte_val = map(int_val, 23, 103, 1, 5);
+          show_gpu_load_val_tft_1(gpu_load, byte_val);
+          tft_1_bg_drawn = true;
+        }
+        if (tft_1_bg_drawn == false) {
+          int byte_val = 0;
+          int int_val = prev_gpu_load_val_1.toInt();
+          byte_val = map(int_val, 23, 103, 1, 5);
+          show_gpu_load_val_tft_1(prev_gpu_load_val_1, byte_val);
+          tft_1_bg_drawn = true;
+        }
+      }
+      break;
+    case 5:
+      if (cpu_temp != "0" && cpu_load != "0") {
+        if (cpu_temp.length() == 3) {
+          cpu_temp = "0" + cpu_temp;
+        }
+        if (cpu_temp.length() == 5) {
+          cpu_temp.remove(3, 2);
+        }
+        if (cpu_load.length() == 3) {
+          cpu_load = "0" + cpu_load;
+        }
+        if (cpu_load.length() == 5) {
+          cpu_load.remove(3, 2);
+        }
+        // Serial.println(cpu_temp);
+        // Serial.println(cpu_load);
+        if (prev_cpu_temp_val_1 != cpu_temp || prev_cpu_load_val_1 != cpu_load) {
+          int byte_val_cpu_temp = 0;
+          int int_val_cpu_temp = cpu_temp.toInt();
+          int byte_val_cpu_load = 0;
+          int int_val_cpu_load = cpu_load.toInt();
+
+          byte_val_cpu_temp = map(int_val_cpu_temp, 23, 103, 1, 5);
+          byte_val_cpu_load = map(int_val_cpu_load, 23, 103, 1, 5);
+          show_cpu_temp_and_load_val_tft_1(cpu_temp, cpu_load, byte_val_cpu_temp, byte_val_cpu_load);
+          tft_1_bg_drawn = true;
+        }
+        if (tft_1_bg_drawn == false) {
+          int byte_val_cpu_temp = 0;
+          int int_val_cpu_temp = prev_cpu_temp_val_1.toInt();
+          int byte_val_cpu_load = 0;
+          int int_val_cpu_load = prev_cpu_load_val_1.toInt();
+
+          byte_val_cpu_temp = map(int_val_cpu_temp, 23, 103, 1, 5);
+          byte_val_cpu_load = map(int_val_cpu_load, 23, 103, 1, 5);
+          show_cpu_temp_and_load_val_tft_1(prev_cpu_temp_val_1, prev_cpu_load_val_1, byte_val_cpu_temp, byte_val_cpu_load);
+          tft_1_bg_drawn = true;
+        }
+      }
+      break;
+    case 6:
+      if (gpu_temp != "0" && gpu_load != "0") {
+        if (gpu_temp.length() == 3) {
+          gpu_temp = "0" + gpu_temp;
+        }
+        if (gpu_temp.length() == 5) {
+          gpu_temp.remove(4, 2);
+        }
+        if (gpu_load.length() == 3) {
+          gpu_load = "0" + gpu_load;
+        }
+        if (gpu_load.length() == 5) {
+          gpu_load.remove(4, 2);
+        }
+        // Serial.println(gpu_temp);
+        // Serial.println(gpu_load);
+        if (prev_gpu_temp_val_1 != gpu_temp || prev_gpu_load_val_1 != gpu_load) {
+          int byte_val_gpu_temp = 0;
+          int int_val_gpu_temp = gpu_temp.toInt();
+          int byte_val_gpu_load = 0;
+          int int_val_gpu_load = gpu_load.toInt();
+
+          byte_val_gpu_temp = map(int_val_gpu_temp, 23, 103, 1, 5);
+          byte_val_gpu_load = map(int_val_gpu_load, 23, 103, 1, 5);
+          show_gpu_temp_and_load_val_tft_1(gpu_temp, gpu_load, byte_val_gpu_temp, byte_val_gpu_load);
+          tft_1_bg_drawn = true;
+        }
+        if (tft_1_bg_drawn == false) {
+          int byte_val_gpu_temp = 0;
+          int int_val_gpu_temp = prev_gpu_temp_val_1.toInt();
+          int byte_val_gpu_load = 0;
+          int int_val_gpu_load = prev_gpu_load_val_1.toInt();
+
+          byte_val_gpu_temp = map(int_val_gpu_temp, 23, 103, 1, 5);
+          byte_val_gpu_load = map(int_val_gpu_load, 23, 103, 1, 5);
+          show_gpu_temp_and_load_val_tft_1(prev_gpu_temp_val_1, prev_gpu_load_val_1, byte_val_gpu_temp, byte_val_gpu_load);
+          tft_1_bg_drawn = true;
+        }
+      }
+      break;
+    case 7:
+      if (com_date != "0" && com_day != "0" || tft_1_bg_drawn == false) {
+        show_day_and_date_tft_1_bg_1(com_day, com_date);
+      }
+      break;
+    case 8:
+      if (com_time != "0" || tft_1_bg_drawn == false) {
+        show_time_tft_1_bg_1(com_time);
+      }
+      break;
+    case 9:
+      if (com_date != "0" && com_day != "0" || tft_1_bg_drawn == false) {
+        show_day_and_date_tft_1_bg_2(com_day, com_date);
+      }
+      break;
+    case 10:
+      if (com_time != "0" || tft_1_bg_drawn == false) {
+        show_time_tft_1_bg_2(com_time);
+      }
+      break;
+    default:
+      if (cpu_temp != "0") {
+        if (cpu_temp.length() == 3) {
+          cpu_temp = "0" + cpu_temp;
+        }
+        if (cpu_temp.length() == 5) {
+          cpu_temp.remove(3, 2);
+        }
+        // Serial.println(cpu_temp);
+        if (prev_cpu_temp_val_1 != cpu_temp) {
+          int byte_val = 0;
+          int int_val = cpu_temp.toInt();
+          byte_val = map(int_val, 23, 103, 1, 5);
+          show_cpu_temp_val_tft_1(cpu_temp, byte_val);
+          tft_1_bg_drawn = true;
+        }
+        if (tft_1_bg_drawn == false) {
+          int byte_val = 0;
+          int int_val = prev_cpu_temp_val_1.toInt();
+          byte_val = map(int_val, 23, 103, 1, 5);
+          show_cpu_temp_val_tft_1(prev_cpu_temp_val_1, byte_val);
+          tft_1_bg_drawn = true;
+        }
+      }
+      break;
+  }
+}
+
 void show_day_and_date_tft_1_bg_1(String day_val, String date_val) {
   uint16_t red_val, green_val, blue_val, tft_1_text_color, tft_1_text_bg_color, tft_1_bmp_color;
   red_val = 198 / brightness_divisor;
@@ -33,8 +263,6 @@ void show_day_and_date_tft_1_bg_1(String day_val, String date_val) {
     tft_1.drawRGBBitmap(0, 70, canvas_1.getBuffer(), canvas_1.width(), canvas_1.height());
     tft_1.drawRGBBitmap(0, 140, canvas_3.getBuffer(), canvas_3.width(), canvas_3.height());
   }
-  prev_date_val_1 = date_val;
-  prev_day_val_1 = day_val;
 }
 
 void show_day_and_date_tft_1_bg_2(String day_val, String date_val) {
@@ -72,8 +300,6 @@ void show_day_and_date_tft_1_bg_2(String day_val, String date_val) {
     tft_1.drawRGBBitmap(0, 70, canvas_1.getBuffer(), canvas_1.width(), canvas_1.height());
     tft_1.drawRGBBitmap(0, 140, canvas_3.getBuffer(), canvas_3.width(), canvas_3.height());
   }
-  prev_date_val_1 = date_val;
-  prev_day_val_1 = day_val;
 }
 
 void show_time_tft_1_bg_1(String time_val) {
@@ -105,7 +331,6 @@ void show_time_tft_1_bg_1(String time_val) {
     canvas_2.setCursor(40, 5); canvas_2.setTextColor(tft_1_text_color); canvas_2.setTextSize(4); canvas_2.print(time_val);
     tft_1.drawRGBBitmap(0, 140, canvas_2.getBuffer(), canvas_2.width(), canvas_2.height());
   }
-  prev_time_val_1 = time_val;
 }
 
 void show_time_tft_1_bg_2(String time_val) {
@@ -137,7 +362,6 @@ void show_time_tft_1_bg_2(String time_val) {
     canvas_2.setCursor(40, 5); canvas_2.setTextColor(tft_1_text_color); canvas_2.setTextSize(4); canvas_2.print(time_val);
     tft_1.drawRGBBitmap(0, 140, canvas_2.getBuffer(), canvas_2.width(), canvas_2.height());
   }
-  prev_time_val_1 = time_val;
 }
 
 void show_cpu_temp_and_load_val_tft_1(String temp_val, String load_val, int temp_text_color, int load_text_color) {
@@ -306,8 +530,6 @@ void show_cpu_temp_and_load_val_tft_1(String temp_val, String load_val, int temp
   tft_1.drawRGBBitmap(0, 0, canvasL_1.getBuffer(), canvasL_1.width(), canvasL_1.height());
   tft_1.drawRGBBitmap(120, 0, canvasR_1.getBuffer(), canvasR_1.width(), canvasR_1.height());
   yield();
-  prev_cpu_temp_val_1 = temp_val;
-  prev_cpu_load_val_1 = load_val;
 }
 
 void show_gpu_temp_and_load_val_tft_1(String temp_val, String load_val, int temp_text_color, int load_text_color) {
@@ -476,8 +698,6 @@ void show_gpu_temp_and_load_val_tft_1(String temp_val, String load_val, int temp
   tft_1.drawRGBBitmap(0, 0, canvasL_1.getBuffer(), canvasL_1.width(), canvasL_1.height());
   tft_1.drawRGBBitmap(120, 0, canvasR_1.getBuffer(), canvasR_1.width(), canvasR_1.height());
   yield();
-  prev_gpu_temp_val_1 = temp_val;
-  prev_gpu_load_val_1 = load_val;
 }
 
 void show_cpu_temp_val_tft_1(String temp_val, int text_colour) {
@@ -551,7 +771,6 @@ void show_cpu_temp_val_tft_1(String temp_val, int text_colour) {
   }
 
   tft_1.println(temp_val);
-  prev_cpu_temp_val_1 = temp_val;
   yield();
 }
 
@@ -625,7 +844,6 @@ void show_gpu_temp_val_tft_1(String temp_val, int text_colour) {
   }
 
   tft_1.println(temp_val);
-  prev_gpu_temp_val_1 = temp_val;
   yield();
 }
 
@@ -702,7 +920,6 @@ void show_cpu_load_val_tft_1(String load_val, int text_colour) {
   }
 
   tft_1.println(load_val);
-  prev_cpu_load_val_1 = load_val;
   yield();
 }
 
@@ -776,6 +993,5 @@ void show_gpu_load_val_tft_1(String load_val, int text_colour) {
   }
 
   tft_1.println(load_val);
-  prev_gpu_load_val_1 = load_val;
   yield();
 }
