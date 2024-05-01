@@ -12,4 +12,5 @@ Quantity	Name				Source
 1		Bottom case			/3D files/3D printed parts
 1		ESP32C3SM PCB spacer		/3D files/3D printed parts
 2		stand				/3D files/3D printed parts
-4		M3x12 CSK screws		https://www.aliexpress.com/item/32975242274.html
+4		M3x12/15 CSK screws		https://www.aliexpress.com/item/32975242274.html
+3		Touch button			/3D files/3D printed parts
