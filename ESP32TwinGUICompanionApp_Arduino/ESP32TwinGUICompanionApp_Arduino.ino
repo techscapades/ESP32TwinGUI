@@ -1168,8 +1168,8 @@ const char* tft_screen_2_file_path = "/tft_2.txt";
 
 bool continue_rw = false;
 
-const int SHORT_PRESS_TIME = 300; // 1000 milliseconds
-const int LONG_PRESS_TIME  = 300; // 1000 milliseconds
+const int SHORT_PRESS_TIME = 600; // 1000 milliseconds
+const int LONG_PRESS_TIME  = 1200; // 1000 milliseconds
 
 byte brightness_divisor_button = 0;
 byte brightness_divisor_button_lastState = LOW;
@@ -1189,6 +1189,8 @@ byte tft_2_UI_button_currentState;
 unsigned long tft_2_UI_button_pressedTime = 0;
 unsigned long tft_2_UI_button_releasedTime = 0;
 
+bool tft_1_change_detected = false;
+bool tft_2_change_detected = false;
 
 void setup() {
   randomSeed(analogRead(5));

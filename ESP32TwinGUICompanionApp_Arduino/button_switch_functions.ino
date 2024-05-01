@@ -19,18 +19,7 @@ void poll_exit_switch() {
 
 void poll_brightness_divisor_button() {
   //if this button is pressed, it'll increment brightness_divisor_array_current_element by 1
-  /*
-    if (digitalRead(brightness_divisor_button) == HIGH) {
-    delay(150); //debounce time
-    brightness_divisor_array_current_element += 1;
-    if (brightness_divisor_array_current_element >= brightness_divisor_array_size) {
-      brightness_divisor_array_current_element = 0;
-    }
-    writeFile(brightness_file_path, brightness_divisor_array_current_element);
-    tft_1_bg_drawn = false;
-    tft_2_bg_drawn = false;
-    brightness_divisor = brightness_divisor_array[brightness_divisor_array_current_element];
-    }*/
+
   brightness_divisor_button_currentState = digitalRead(brightness_divisor_button);
   bool change_detected = false;
   if (brightness_divisor_button_lastState == LOW && brightness_divisor_button_currentState == HIGH) {      // button is pressed
@@ -75,21 +64,6 @@ void poll_brightness_divisor_button() {
 }
 
 void poll_tft_UI_buttons() {
-  bool tft_1_change_detected = false;
-  bool tft_2_change_detected = false;
-
-  /*
-    if (digitalRead(tft_1_UI_button) == HIGH && serial_begun) {
-      delay(150);
-      tft_1_UI_page += 1;
-      if (tft_1_UI_page > tft_UI_pages) {
-        tft_1_UI_page = 1;
-      }
-      writeFile(tft_screen_1_file_path, tft_1_UI_page);
-      refresh_screen_1_components();
-    }
-  */
-
   tft_1_UI_button_currentState = digitalRead(tft_1_UI_button);
 
   if (tft_1_UI_button_lastState == LOW && tft_1_UI_button_currentState == HIGH) {      // button is pressed
@@ -118,26 +92,6 @@ void poll_tft_UI_buttons() {
   }
   //Serial.println(tft_1_UI_page);
   tft_1_UI_button_lastState = tft_1_UI_button_currentState;
-
-  if (tft_1_change_detected && serial_begun) {
-    writeFile(tft_screen_1_file_path, tft_1_UI_page);
-    tft_1_bg_drawn = false;
-    refresh_screen_1_components();
-    tft_1_switch(prev_cpu_temp_val_1, prev_gpu_temp_val_1, prev_cpu_load_val_1, prev_gpu_load_val_1, prev_date_val_1, prev_time_val_1, prev_day_val_1);
-  }
-
-
-  /*
-    if (digitalRead(tft_2_UI_button) == HIGH && serial_begun) {
-      delay(150);
-      tft_2_UI_page += 1;
-      if (tft_2_UI_page > tft_UI_pages) {
-        tft_2_UI_page = 1;
-      }
-      writeFile(tft_screen_2_file_path, tft_2_UI_page);
-      refresh_screen_2_components();
-    }
-  */
 
   tft_2_UI_button_currentState = digitalRead(tft_2_UI_button);
 
@@ -168,11 +122,22 @@ void poll_tft_UI_buttons() {
   //Serial.println(tft_2_UI_page);
   tft_2_UI_button_lastState = tft_2_UI_button_currentState;
 
+
+  if (tft_1_change_detected && serial_begun) {
+    writeFile(tft_screen_1_file_path, tft_1_UI_page);
+    tft_1_bg_drawn = false;
+    refresh_screen_1_components();
+    tft_1_switch(prev_cpu_temp_val_1, prev_gpu_temp_val_1, prev_cpu_load_val_1, prev_gpu_load_val_1, prev_date_val_1, prev_time_val_1, prev_day_val_1);
+    tft_1_change_detected = false;
+
+  }
+
   if (tft_2_change_detected && serial_begun) {
     writeFile(tft_screen_2_file_path, tft_2_UI_page);
     tft_2_bg_drawn = false;
     refresh_screen_2_components();
     tft_2_switch(prev_cpu_temp_val_2, prev_gpu_temp_val_2, prev_cpu_load_val_2, prev_gpu_load_val_2, prev_date_val_2, prev_time_val_2, prev_day_val_2);
+    tft_2_change_detected = false;
   }
 }
 
